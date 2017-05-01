@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wikitude-AR", "Assembly-CSharp.csproj", "{A068DFD0-B043-92A5-603F-1EDAD0339303}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A068DFD0-B043-92A5-603F-1EDAD0339303}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A068DFD0-B043-92A5-603F-1EDAD0339303}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A068DFD0-B043-92A5-603F-1EDAD0339303}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A068DFD0-B043-92A5-603F-1EDAD0339303}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
