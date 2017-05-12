@@ -7,6 +7,10 @@ public class InstantTrackerController : SampleController
 {
 	public GameObject ButtonDock;
 	public GameObject InitializationControls;
+    public List<GameObject> Trees;
+
+    public List<GameObject> Start_Trees;
+
 	public Text HeightLabel;
 	public Text ScaleLabel;
 
@@ -40,11 +44,14 @@ public class InstantTrackerController : SampleController
 
 		_moveController = GetComponent<MoveController>();
 		_gridRenderer = GetComponent<GridRenderer>();
-	}
+        TreesState(false);
+        Buttons[0].gameObject.SetActive(false);
+    }
 
 	#region UI Events
 	public void OnInitializeButtonClicked() {
-		Tracker.SetState(InstantTrackingState.Tracking);
+        TreesState(true);
+        Tracker.SetState(InstantTrackingState.Tracking);
 	}
 
 	public void OnHeightValueChanged(float newHeightValue) {
@@ -79,7 +86,8 @@ public class InstantTrackerController : SampleController
 		if (_currentState == InstantTrackingState.Initializing) {
 			base.OnBackButtonClicked();
 		} else {
-			Tracker.SetState(InstantTrackingState.Initializing);
+            TreesState(false);
+            Tracker.SetState(InstantTrackingState.Initializing);
 		}
 	}
 	#endregion
@@ -87,11 +95,11 @@ public class InstantTrackerController : SampleController
 	#region Tracker Events
 	public void OnEnterFieldOfVision(string target) {
 		SetSceneActive(true);
-	}
+    }
 
 	public void OnExitFieldOfVision(string target) {
 		SetSceneActive(false);
-	}
+    }
 
 	private void SetSceneActive(bool active) {
 
@@ -116,17 +124,27 @@ public class InstantTrackerController : SampleController
 		_currentState = newState;
 		if (newState == InstantTrackingState.Tracking) {
 			InitializationControls.SetActive(false);
-			ButtonDock.SetActive(true);
-		} else {
+            Buttons[0].gameObject.SetActive(true);
+            ButtonDock.SetActive(true);
+            TreesState(true);
+        } else {
 			foreach (var model in _activeModels) {
 				Destroy(model);
 			}
 			_activeModels.Clear();
 
-			InitializationControls.SetActive(true);
-			ButtonDock.SetActive(false);
+            InitializationControls.SetActive(true);
+            Buttons[0].gameObject.SetActive(false);
+            ButtonDock.SetActive(false);
 		}
 		_gridRenderer.enabled = true;
 	}
-	#endregion
+    #endregion
+
+    // sets the tree active states
+    private void TreesState(bool state) {
+        foreach (var tree in Trees) {
+            tree.SetActive(state);
+        }
+    }
 }
